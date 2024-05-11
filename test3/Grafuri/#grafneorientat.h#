@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#define MAX_NOD 100
+#define N 5
+
+typedef struct Nod
+{
+  int cheie;
+  int info;
+}Nod_t;
+
+typedef struct Arc
+{
+  Nod_t nod1;
+  Nod_t nod2;
+}Arc_t;
+
+typedef struct Graf
+{
+  int nr_noduri;
+  Nod_t noduri[MAX_NOD];
+  int arce[MAX_NOD][MAX_NOD];
+}Graf_t;
+
+void initializare(Graf_t*);
+int cautaNod(Graf_t*,int);
+void insereazaNod(Graf_t*,Nod_t);
+void insereazaArc(Graf_t*,Arc_t);
+void suprimaNod(Graf_t*,int);
+void suprimaArc(Graf_t*,Arc_t);
+void afiseazaGraf(Graf_t*);
+

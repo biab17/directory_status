@@ -1,0 +1,4 @@
+Student 0:ana,19,8.000000
+Student 1:mihai,21,6.500000
+Student 2:maria,20,9.200000
+Student 3:andrei,29,4.000000

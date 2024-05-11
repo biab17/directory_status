@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct
+{
+    char cuvant[25];
+    int nr_aparitii;
+    float frecventa;
+}Linie;
+
+typedef Linie[1000] Dictionar;
+
+FILE* deschide()
+{
+   FILE *fis=fopen("random_ex1.csv","r");
+   if(fis==NULL)
+   {
+       exit(-1);
+   }
+  return fis;
+}
+
+
+Dictionar citeste(FILE *fis,Dictonar dictionar)
+{
+   char linie[100],*p;
+   int i=0;
+   fgets(linie,100,fis);
+   while(fgets(linie,100,fis)!=NULL)
+   {
+       p=strtok(linie,",");
+       strcpy(dictionar[i].cuvant,p);
+       p=strtok(NULL,",");
+       dictionar[i].nr_aparitii=atoi(p);
+       p=strtok(NULL,",");
+       dictionar[i].frecventa=atof(p);
+       i++;
+   }
+   return dictionar;
+}
+
+int compara(const void *elem1,const void *elem2)
+{
+  float c1=*(float*)elem1;
+  float c2=*(float*)elem2;
+  return c1-c2;
+}
+
+Dictionar sorteaza(Dictionar dictionar)
+{
+    qsort(dictionar,1000,sizeof(dictionar.frecventa[0]),compara);
+}
+
+
+
+int main()
+{
+   FILE *fin=deschide();
+   Dictionar dictionar=NULL;
+   dictionar=citeste(fin,dictionar);
+   FILE *fout=deschide();
+   fclose(fin);
+   fclose(fout);
+   return 0;
+}
